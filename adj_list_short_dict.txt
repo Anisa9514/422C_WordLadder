@@ -1,0 +1,42 @@
+Current Vertex: HEARD
+2 Adjacent Vertices:  HEARS, HEART,
+======================
+Current Vertex: HANTS
+1 Adjacent Vertices:  WANTS,
+======================
+Current Vertex: WHITE
+0 Adjacent Vertices: 
+======================
+Current Vertex: THERE
+0 Adjacent Vertices: 
+======================
+Current Vertex: WANTS
+2 Adjacent Vertices:  HANTS, WANES,
+======================
+Current Vertex: TWAIN
+0 Adjacent Vertices: 
+======================
+Current Vertex: HEART
+2 Adjacent Vertices:  HEARD, HEARS,
+======================
+Current Vertex: HEARS
+3 Adjacent Vertices:  WEARS, HEARD, HEART,
+======================
+Current Vertex: WITHE
+0 Adjacent Vertices: 
+======================
+Current Vertex: WANES
+2 Adjacent Vertices:  WARES, WANTS,
+======================
+Current Vertex: CHEER
+0 Adjacent Vertices: 
+======================
+Current Vertex: WARES
+1 Adjacent Vertices:  WANES,
+======================
+Current Vertex: WEARS
+1 Adjacent Vertices:  HEARS,
+======================
+Current Vertex: THREE
+0 Adjacent Vertices: 
+======================
