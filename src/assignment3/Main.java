@@ -112,7 +112,7 @@ public class Main {
 		HashSet<String> visited = new HashSet<String>();
 		HashMap<String, String> traversed = new HashMap<String, String>();
 		
-		DFS_Recursive(start, end, visited, traversed, graph);
+		DFS_Recursive(0, start, end, visited, traversed, graph);
 
 		/* CREATE LADDER*/
 		ArrayList<String> ladder = new ArrayList<String>();
@@ -131,10 +131,15 @@ public class Main {
 		return ladder; 
 	}
 	
-	private static void DFS_Recursive(String start, String end, HashSet<String> visited, HashMap<String, String> traversed, HashMap<String, ArrayList<String>> graph){
+	private static void DFS_Recursive(int depth, String start, String end, HashSet<String> visited, HashMap<String, String> traversed, HashMap<String, ArrayList<String>> graph){
 		visited.add(start);
 		System.out.println(start);
 //		System.out.println("Visited Nodes Size: " + visited.size());
+		System.out.println("Depth: " + depth);
+		depth++;
+		if(depth > 200) {
+			return;
+		}
 		
 		if(!start.equals(end)) {
 			ArrayList<String> neighbors = graph.get(start);
@@ -171,10 +176,12 @@ public class Main {
 				if(!visited.contains(neighbor)) {
 					traversed.put(neighbor, parent);
 //					System.out.println("Traversed Nodes Size: " + traversed.size());
-					DFS_Recursive(neighbor, end, visited, traversed, graph);
+					DFS_Recursive(depth, neighbor, end, visited, traversed, graph);
 				}
 			}
+			
 		}
+		
 		return;
 	}
 	
