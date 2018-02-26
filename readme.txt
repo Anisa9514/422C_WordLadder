@@ -1,7 +1,4 @@
 Project: Word Ladder
-Author: Angelique Bautista
-UTeid: ab54429
-
 
 Given two words, this project outputs a word ladder from one word to the other 
 such that each rung of the ladder is exactly one letter different from the preceding rung.
