@@ -37,7 +37,6 @@ public class Main {
 		
 		Scanner kb;	// input Scanner for commands
 		PrintStream ps;	// output file, for student testing and grading only
-		HashMap<String, ArrayList<String>> graph;
 		
 		// If arguments are specified, read/write from/to files instead of Std IO.
 		if (args.length != 0) {
@@ -117,7 +116,7 @@ public class Main {
 		HashSet<String> visited = new HashSet<String>();					// Contains set of all nodes visited
 		HashMap<String, String> traversed = new HashMap<String, String>();	// Contains how each node was reached; key is mapped to the parent used to reach it
 		
-		DFS_Recursive(0, start, end, visited, traversed, graph);			// Recursive depth first search
+		dfsRecursive(0, start, end, visited, traversed, graph);			// Recursive depth first search
 
 		// CREATE LADDER
 		ArrayList<String> ladder = new ArrayList<String>();
@@ -141,27 +140,33 @@ public class Main {
 	
 	/**
 	 * This function is a wrapper function for the recursive calls used in DFS
-	 * @param depth the depth at which the node is visited
+	 * @param depth -the depth at which the node is visited
 	 * @param start -start word of ladder
 	 * @param end -end word of ladder
 	 * @param visited -the words already visited
 	 * @param traversed -how the node is visited
 	 * @param graph -adjacency list used to grab neighboring words 
 	 */
-	public static void DFS_Recursive(int depth, String start, String end, HashSet<String> visited, HashMap<String, String> traversed, HashMap<String, ArrayList<String>> graph){
+	private static void dfsRecursive(int depth, String start, String end, HashSet<String> visited, HashMap<String, String> traversed, HashMap<String, ArrayList<String>> graph){
 		
 		visited.add(start);	 // add current word to list of words already visited
 		depth++;			 // increment depth level of search
 		
 		// If maximum depth has been reached, return to explore other options
 		// Reduces size of word ladder
-		if(depth > 200) {
+		if(depth > 1000) {
+			// if at depth limit, then erase node from visited so it can be traversed again later on if encountered at a higher depth
+			// traversed should not need be altered because it will rewrite value later on if traversed again
+			visited.remove(start);	
 			return;
 		}
 		
 		// If end word has not been reached, search through unvisited neighbors
 		if(!start.equals(end)) {
 			ArrayList<String> neighbors = graph.get(start);
+			if(neighbors == null) {
+				return;
+			}
 			ArrayList<Integer> sameLettersCountArr = new ArrayList<Integer>();	
 			
 			// SORT NEIGHBORS: Neighbors closest to end word will be searched first
@@ -194,7 +199,7 @@ public class Main {
 				String parent = start;
 				if(!visited.contains(neighbor)) {
 					traversed.put(neighbor, parent);
-					DFS_Recursive(depth, neighbor, end, visited, traversed, graph);
+					dfsRecursive(depth, neighbor, end, visited, traversed, graph);
 				}
 			}
 			
